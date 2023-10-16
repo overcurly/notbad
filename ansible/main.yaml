@@ -1,0 +1,72 @@
+---
+- hosts: app
+  gather_facts: false
+  become: true
+  vars:
+    ansible_user: ubuntu
+
+  vars_files:
+    - vars.yaml
+
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+#
+#  handlers:
+#    - name: restart solr
+#      service:
+#        name: solr
+#        state: restarted
+  tasks:
+    - name: Output the ip address
+      debug:
+        msg: "Allocated IP is {{ hostvars[inventory_hostname]['inventory_hostname'] }}"
+
+    - name: Install docker
+      apt:
+        name: docker.io
+        update_cache: true
+        cache_valid_time: 86400
+        state: present
+
+    - name: Install microk8s
+      snap:
+        name: microk8s
+        state: present
+        classic: yes
+
+    - name: Add user to Docker and Microk8s groups
+      user:
+        name: 'ubuntu'
+        state: present
+        groups:
+          - docker
+          - microk8s
+        append: true
+
+    - name: Enable elastic IP for connecting micro8s
+      lineinfile:
+        dest: /var/snap/microk8s/current/certs/csr.conf.template
+        regexp: "^#MOREIPS"
+        insertafter: "^#MOREIPS"
+        line: "IP.100 = {{hostvars[inventory_hostname]['inventory_hostname']}}"
+        state: present
+
+    - name: Add alias to kubectl
+      become: false
+      lineinfile:
+        path: '/home/ubuntu/.bashrc'
+        regexp: '^alias kubectl='
+        line: 'alias kubectl="microk8s kubectl"'
+        state: present
+
+    - name: Add bash completion for kubectl
+      become: false
+      lineinfile:
+        path: '/home/ubuntu/.bashrc'
+        regexp: '^source \<\(kubectl'
+        line: 'source <(kubectl completion bash)'
+        state: present
+
