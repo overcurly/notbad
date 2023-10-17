@@ -20,12 +20,12 @@ spec:
       containers:
       - name: app
         image: 820469828681.dkr.ecr.eu-north-1.amazonaws.com/notbad:d5105
-#          resources:
-#            limits:
-#              memory: 100Mi
-#            requests:
-#              cpu: 10m
-#              memory: 20Mi
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 5m
+            memory: 25Mi
         ports:
           - containerPort: 8089
         livenessProbe:

@@ -46,6 +46,7 @@
         microk8s enable ingress
         microk8s enable community
         microk8s enable argocd
+        microk8s enable metrics-server
 
     - name: Enable elastic IP for connecting micro8s
       lineinfile:

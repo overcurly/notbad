@@ -41,4 +41,4 @@ jobs:
         with:
           manifest-path: ./k8s/deploy/deployment.yaml
           new-image-tag: ${GITHUB_SHA::5}
-          name: backend
+          container-name: app
