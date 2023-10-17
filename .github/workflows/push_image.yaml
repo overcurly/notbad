@@ -37,7 +37,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_SHA::5}
 
       - name: Modify k8s deployment manifest with new tag
-        uses: Charlyzzz/update-k8s-image
+        uses: Charlyzzz/update-k8s-image@v1.7.1
         with:
           manifest-path: ./k8s/deploy/deployment.yaml
           new-image-tag: ${GITHUB_SHA::5}
