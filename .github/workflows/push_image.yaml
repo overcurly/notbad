@@ -8,6 +8,7 @@ on:
 
 env:
   AWS_REGION: eu-north-1
+  APP_VERSION: 0.1.0
 
 jobs:
   build:
@@ -33,12 +34,5 @@ jobs:
           ECR_REGISTRY: 820469828681.dkr.ecr.eu-north-1.amazonaws.com
           ECR_REPOSITORY: notbad
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_SHA::5} .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_SHA::5}
-
-      - name: Modify k8s deployment manifest with new tag
-        uses: Charlyzzz/update-k8s-image@v1.7.1
-        with:
-          manifest-path: ./k8s/deploy/deploymenttt.yaml
-          new-image-tag: ${GITHUB_SHA::5}
-          container-name: app
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${ env.APP_VERSION } .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${ env.APP_VERSION }

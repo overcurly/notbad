@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: 820469828681.dkr.ecr.eu-north-1.amazonaws.com/notbad:d5105
+        image: 820469828681.dkr.ecr.eu-north-1.amazonaws.com/notbad:0.1.0
         resources:
           limits:
             memory: 100Mi
