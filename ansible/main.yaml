@@ -41,8 +41,11 @@
           - microk8s
         append: true
 
-    - name: Enable ingress on microk8s
-      shell: microk8s enable ingress
+    - name: Enable Ingress and ArgoCD on microk8s
+      shell: |
+        microk8s enable ingress
+        microk8s enable community
+        microk8s enable argocd
 
     - name: Enable elastic IP for connecting micro8s
       lineinfile:

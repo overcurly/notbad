@@ -11,15 +11,17 @@
 - ALB ( Optional )
 - Security Groups
 - ECR
-- Dynamically Create Inventory File
+- Dynamically Create Inventory File for Ansible
 
-### - Configuration/Setup ( Ansible )
+### - Setup K8s and ArgoCD ( Ansible )
 - Setup micro8s
+- Enable Ingress
+- Enable ArgoCD
 
 ### - CI/CD Pipeline ( GitHub Actions )
 - Build and push image
   - Create user with ECR push permission
-  - Write the actual script and test
+  - Develop the actual pipeline declarations and test
 - Create K8s Resource Definitions
   - Deployment
   - Service
@@ -34,7 +36,7 @@
     --namespace=default
 ```
   - Perform deployment locally via kubectl 
-  - Perform deployment with Git
+  - Perform deployment with ArgoCD
 
 ### - Enable and Configure ArgoCD
   - kubectl port-forward service/argo-cd-argocd-server -n argocd 8080:443
