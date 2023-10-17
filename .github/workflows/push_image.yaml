@@ -39,6 +39,6 @@ jobs:
       - name: Modify k8s deployment manifest with new tag
         uses: Charlyzzz/update-k8s-image@v1.7.1
         with:
-          manifest-path: ./k8s/deploy/deployment.yaml
+          manifest-path: ./k8s/deploy/deploymenttt.yaml
           new-image-tag: ${GITHUB_SHA::5}
           container-name: app
