@@ -13,12 +13,7 @@
       apt:
         update_cache: true
         cache_valid_time: 3600
-#
-#  handlers:
-#    - name: restart solr
-#      service:
-#        name: solr
-#        state: restarted
+
   tasks:
     - name: Output the ip address
       debug:
@@ -45,6 +40,13 @@
           - docker
           - microk8s
         append: true
+
+    - name: Enable Ingress and ArgoCD on microk8s
+      shell: |
+        microk8s enable ingress
+        microk8s enable community
+        microk8s enable argocd
+        microk8s enable metrics-server
 
     - name: Enable elastic IP for connecting micro8s
       lineinfile:

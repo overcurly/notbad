@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notbad-deployment
+  namespace: notbad
+  labels:
+    app: web
+spec:
+  selector:
+    matchLabels:
+      app: web
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: app
+        image: 820469828681.dkr.ecr.eu-north-1.amazonaws.com/notbad:0.1.0
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 5m
+            memory: 25Mi
+        ports:
+          - containerPort: 8089
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8089
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8089
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      imagePullSecrets:
+        - name: regcred

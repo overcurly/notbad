@@ -9,6 +9,11 @@ locals {
     },
     {
       name        = "HTTP"
+      port        = 80
+      description = "Ingress rules for port 8089"
+    },
+    {
+      name        = "HTTP"
       port        = 16443
       description = "Ingress rules for k8s api server"
     },
