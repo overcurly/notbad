@@ -9,6 +9,7 @@
 
 ### Log file analysis
 - The most dangerous line is the following line
+
 `178.62.75.41 - - [06/Oct/2019:21:57:27 +0300] "GET /tmp/s53hkls980JHD.jpg.php HTTP/1.1" 200 25346 "-" "Mozilla/5.0 (Windows NT 5.1) Gecko/20100101 Firefox/4.0.1"`
 
 This line looks like a backdoor.
