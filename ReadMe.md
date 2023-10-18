@@ -1,5 +1,17 @@
-## Highlights
 
+### Test Command
+  - `curl -X POST -H "NotBad:true" http://51.20.186.17`
+<br/><br/>
+### Execution Results
+![Tests](./images/tests.png)
+
+<br/>
+
+### Deployment diagram by ArgoCD
+![Deployment](images/argocd.png)
+
+
+## The Plan Step by Step
 ### - Develop the app locally
 - Python Flask
 - Dockerize
@@ -33,7 +45,7 @@
     --docker-server=820469828681.dkr.ecr.eu-north-1.amazonaws.com \
     --docker-username=AWS \
     --docker-password=$(aws ecr get-login-password) \
-    --namespace=default
+    --namespace=notbad
 ```
   - Perform deployment locally via kubectl 
   - Perform deployment with ArgoCD
@@ -43,6 +55,3 @@
   - After reaching the UI the first time you can login with username: admin and the random password generated during the installation. You can find the password by running:
 
 `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
-
-- ### Test
-  - `curl -X POST -H "NotBad:true" http://51.20.186.17`
