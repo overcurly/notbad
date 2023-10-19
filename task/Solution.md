@@ -15,7 +15,7 @@
 This line looks like a backdoor.
 The line can be found with the following command:
 
-egrep -v "sql|403|cgi|wp-|302|301|xmlrpc" somesite.log | grep php
+`egrep -v "sql|403|cgi|wp-|302|301|xmlrpc" somesite.log | grep php`
 
 - I would also block the following IPs as they are trying to access unauthorized paths very frequently  
 
