@@ -10,7 +10,7 @@ locals {
     {
       name        = "HTTP"
       port        = 80
-      description = "Ingress rules for port 8089"
+      description = "Ingress rules for port 80"
     },
     {
       name        = "HTTP"

@@ -4,8 +4,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def home_route():
-    print(request.headers)
-    print('------')
 
     if request.method == "POST" and request.headers.get('NotBad') == "true":
         return "ReallyNotBad\n"
@@ -14,4 +12,4 @@ def home_route():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=8000)
+    app.run(host='localhost', port=8000)
