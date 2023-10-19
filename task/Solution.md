@@ -19,9 +19,10 @@ The line can be found with the following command:
 
 - I would also block the following IPs as they are trying to access unauthorized paths very frequently  
 
+```
 16 66.249.75.52 "GET 403
-
 40 66.249.64.116 "GET 403
+```
 
 The following command lists IPs getting 403 responses sorted by frequency in ascending order
 
