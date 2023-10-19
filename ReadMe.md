@@ -1,11 +1,16 @@
 
 ### Test Command
   - `curl -X POST -H "NotBad:true" http://51.20.186.17`
+  - `curl -X POST -H "NotBad:true" http://NotBadALB-1427893208.eu-north-1.elb.amazonaws.com:8089`
+
 <br/><br/>
 ### Execution Results
-![Tests](./images/tests.png)
 
-<br/>
+#### Tests via ALB on port 8089
+![Tests via LB](./images/tests-lb.png)
+
+#### Tests via the EC2 instance IP
+![Tests](./images/tests.png)
 
 ### Deployment diagram by ArgoCD
 ![Deployment](images/argocd.png)
